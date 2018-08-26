@@ -23,7 +23,7 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 PRODUCT_NAME := lineage_NX595J
 PRODUCT_DEVICE := NX595J
 PRODUCT_BRAND := nubia
-PRODUCT_MODEL := Nubia Z11S
+PRODUCT_MODEL := Nubia Z17S
 PRODUCT_MANUFACTURER := nubia
 
 PRODUCT_AAPT_CONFIG := normal
