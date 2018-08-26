@@ -22,7 +22,7 @@
 #
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := NX609J
+TARGET_OTA_ASSERT_DEVICE := NX595J
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8998
@@ -52,21 +52,25 @@ TARGET_HW_DISK_ENCRYPTION := true
 #TW_INCLUDE_CRYPTO := true
 
 # Kernel
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 swiotlb=2048 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3
+BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 earlycon=msm_serial_dm,0xc1b0000 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 swiotlb=2048 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET     := 0x01000000
-TARGET_PREBUILT_KERNEL := device/nubia/nx609j/kernel
+TARGET_PREBUILT_KERNEL := device/nubia/NX595J/kernel
+BOARD_KERNEL_IMAGE_NAME := kernel
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3758096384
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 121497399296
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 6442450944
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 55680380928
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
-BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)1000
+BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
+BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
+PRODUCT_SUPPORTS_VERITY := true
+PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system
 
 # Workaround for error copying vendor files to recovery ramdisk
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -75,27 +79,28 @@ TARGET_COPY_OUT_VENDOR := vendor
 # Filesystem
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
+TARGET_USERIMAGES_USE_F2FS := false
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/nubia/nx609j/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/nubia/NX595J/recovery.fstab
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_THEME := portrait_hdpi
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TW_NO_SCREEN_TIMEOUT := true
+BOARD_HAS_NO_SELECT_BUTTON := true
 ARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_NO_REAL_SDCARD := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_NO_USB_STORAGE := true
+TW_INCLUDE_NTFS_3G := true
 TW_NEW_ION_HEAP := true
-BOARD_FIX_NUBIA_OTA := true
-BOARD_CUSTOM_BOOTIMG_MK := device/nubia/nx609j/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := device/nubia/NX595J/mkbootimg.mk
 
 #remove screen pointer
 TW_INPUT_BLACKLIST := "hbtp_vm"
-
-#add chinese language
-TW_EXTRA_LANGUAGES := true
-TW_DEFAULT_LANGUAGE := zh_CN
+TW_DEFAULT_LANGUAGE := ru
+TW_EXCLUDE_SUPERSU := true
+TW_DEVICE_VERSION := 1
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 

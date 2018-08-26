@@ -4,13 +4,13 @@ To build:
 
 ```sh
 . build/envsetup.sh
-lunch omni_nx609j-eng
+lunch lineage_NX595J-eng
 make recoveryimage
 ```
 
 TO flash
 
 ```sh
-fastboot oem nubia_unlock NUBIA_NX609J
+fastboot oem nubia_unlock NUBIA_NX595J
 fastboot flash recovery recovery.img
 ```
